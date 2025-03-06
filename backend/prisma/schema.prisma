@@ -19,10 +19,12 @@ model Product {
   name           String
   price          String?
   imageUrl       String?
+  category       String
   discountActive Boolean  @default(false)
   discountValue  String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
 
 
