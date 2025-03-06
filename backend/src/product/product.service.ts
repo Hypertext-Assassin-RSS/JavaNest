@@ -12,7 +12,6 @@ export class ProductService {
       imageUrl = await this.s3Service.uploadFile(file);
     }
 
-    // Ensure discount logic
     const discountValue = data.discountActive ? data.discountValue : null;
 
     return this.prisma.product.create({
