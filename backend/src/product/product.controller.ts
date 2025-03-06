@@ -1,4 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFile,
+  ParseFilePipe,
+  FileTypeValidator,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -8,28 +20,47 @@ export class ProductController {
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  create(@Body() createProductData: any, @UploadedFile() file?: Express.Multer.File) {
-    return this.productService.create(createProductData, file);
+  async create(
+    @Body() createProductData: any,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'image/*' })],
+      }),
+    )
+    file?: Express.Multer.File,
+  ) {
+    const parsedData = JSON.parse(createProductData.data);
+    return this.productService.create(parsedData, file);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.productService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return this.productService.findOne(id);
   }
 
   @Patch(':id')
   @UseInterceptors(FileInterceptor('file'))
-  update(@Param('id') id: string, @Body() updateProductData: any, @UploadedFile() file?: Express.Multer.File) {
-    return this.productService.update(+id, updateProductData, file);
+  async update(
+    @Param('id') id: string,
+    @Body() updateProductData: any,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'image/*' })],
+      }),
+    )
+    file?: Express.Multer.File,
+  ) {
+    const parsedData = JSON.parse(updateProductData.data);
+    return this.productService.update(id, parsedData, file);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return this.productService.remove(id);
   }
 }

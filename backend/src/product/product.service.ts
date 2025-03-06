@@ -11,26 +11,47 @@ export class ProductService {
     if (file) {
       imageUrl = await this.s3Service.uploadFile(file);
     }
-    return this.prisma.product.create({ data: { ...data, imageUrl } });
+
+    // Ensure discount logic
+    const discountValue = data.discountActive ? data.discountValue : null;
+
+    return this.prisma.product.create({
+      data: {
+        ...data,
+        id: undefined,
+        imageUrl,
+        discountValue,
+      },
+    });
   }
 
   async findAll() {
     return this.prisma.product.findMany();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return this.prisma.product.findUnique({ where: { id } });
   }
 
-  async update(id: number, data: any, file?: Express.Multer.File) {
+  async update(id: string, data: any, file?: Express.Multer.File) {
     let imageUrl = data.imageUrl;
     if (file) {
       imageUrl = await this.s3Service.uploadFile(file);
     }
-    return this.prisma.product.update({ where: { id }, data: { ...data, imageUrl } });
+
+    const discountValue = data.discountActive ? data.discountValue : null;
+
+    return this.prisma.product.update({
+      where: { id },
+      data: {
+        ...data,
+        imageUrl,
+        discountValue,
+      },
+    });
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return this.prisma.product.delete({ where: { id } });
   }
 }

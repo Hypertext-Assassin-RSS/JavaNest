@@ -15,11 +15,14 @@ datasource db {
 
 
 model Product {
-  id        Int      @id @default(autoincrement())
-  name      String
-  price     String?
-  imageUrl  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(dbgenerated("CONCAT('PRD', LPAD(nextval('product_id_seq')::text, 4, '0'))")) @map("id")
+  name           String
+  price          String?
+  imageUrl       String?
+  discountActive Boolean  @default(false)
+  discountValue  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
+
 
