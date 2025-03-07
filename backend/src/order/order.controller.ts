@@ -1,37 +1,32 @@
-import { Controller, Post, Get, Patch, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Post, Get, Patch, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
 import { OrdersService } from './order.service';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-
   @Post('checkout/:userId')
-  async checkout(@Param('userId') userId: number, @Body('cartItems') cartItems: any[]) {
+  async checkout(@Param('userId', ParseIntPipe) userId: number, @Body('cartItems') cartItems: any[]) {
     return this.ordersService.checkout(userId, cartItems);
   }
 
-
   @Get('user/:userId')
-  async getOrdersByUser(@Param('userId') userId: number) {
+  async getOrdersByUser(@Param('userId', ParseIntPipe) userId: number) {
     return this.ordersService.getOrdersByUser(userId);
   }
 
-
   @Get(':id')
-  async getOrderById(@Param('id') id: number) {
+  async getOrderById(@Param('id', ParseIntPipe) id: number) {
     return this.ordersService.getOrderById(id);
   }
 
-
   @Patch(':id/status')
-  async updateOrderStatus(@Param('id') id: number, @Body('status') status: string) {
+  async updateOrderStatus(@Param('id', ParseIntPipe) id: number, @Body('status') status: string) {
     return this.ordersService.updateOrderStatus(id, status);
   }
 
-
   @Delete(':id')
-  async deleteOrder(@Param('id') id: number) {
+  async deleteOrder(@Param('id', ParseIntPipe) id: number) {
     return this.ordersService.deleteOrder(id);
   }
 }
