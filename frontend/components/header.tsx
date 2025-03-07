@@ -42,16 +42,6 @@ export default function Header() {
         </ul>
       </nav>
       <div className="flex items-center">
-        {/* <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 mr-2"
-        >
-          {theme === "dark" ? (
-            <Sun size={20} className="text-gray-900 lg:text-gray-100" />
-          ) : (
-            <Moon size={20} className="text-gray-800 lg:text-gray-100" />
-          )}
-        </button> */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 rounded-full bg-gray-200 dark:bg-gray-800"
@@ -64,13 +54,13 @@ export default function Header() {
         </button>
       </div>
       {isMenuOpen && (
-        <nav className="absolute top-full left-0 w-full bg-white dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 md:hidden">
+        <nav className="absolute top-full left-0 w-full  border-t border-gray-300 dark:border-gray-700 md:hidden">
           <ul className="flex flex-col space-y-4 p-4 text-base font-medium text-gray-800 dark:text-gray-100">
             {navItems.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="block w-full hover:text-gray-500"
+                  className="block w-full text-white hover:text-gray-500"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
