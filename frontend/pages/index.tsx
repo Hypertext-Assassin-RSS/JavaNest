@@ -1,11 +1,18 @@
+import Home from "./home";
+import Image from 'next/image'
+import Background from '../assets/background.jpg'
 
 
 export default function IndexPage() {
   return (
-    <>
-      <h1>
-        Home
-      </h1>
-    </>
+    <section className="w-full min-h-screen" style={{ 
+      backgroundImage: `url(${Background.src})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
+      
+      <Home />
+    </section>
   );
 }
