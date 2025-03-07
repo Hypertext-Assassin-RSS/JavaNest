@@ -10,9 +10,9 @@ export class OrdersController {
     return this.ordersService.checkout(userId, cartItems);
   }
 
-  @Get('user/:userId')
-  async getOrdersByUser(@Param('userId', ParseIntPipe) userId: number) {
-    return this.ordersService.getOrdersByUser(userId);
+  @Get('user/:email')
+  async getOrdersByUser(@Param('email') email: string) {
+    return this.ordersService.getOrdersByUser(email);
   }
 
   @Get(':id')

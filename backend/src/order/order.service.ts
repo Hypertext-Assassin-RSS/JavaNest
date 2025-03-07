@@ -19,7 +19,12 @@ export class OrdersService {
   }
 
 
-  async getOrdersByUser(userId: number): Promise<Order[]> {
+  async getOrdersByUser(email: string): Promise<Order[]> {
+
+   const user =  await this.prisma.user.findUnique({ where:{ email : email} });
+   
+   const userId = user?.id;
+
     return this.prisma.order.findMany({
       where: { userId },
       orderBy: { createdAt: 'desc' },
