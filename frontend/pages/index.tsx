@@ -1,6 +1,7 @@
 import Home from "./home";
 import Image from 'next/image'
 import Background from '../assets/background.jpg'
+import Header from "@/components/header";
 
 
 export default function IndexPage() {
@@ -11,7 +12,7 @@ export default function IndexPage() {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }}>
-      
+      <Header />
       <Home />
     </section>
   );
