@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Sun, Moon, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
-import Image from "next/image";
-import Logo from '../../assets/header-logo.png'
-
-
+import { useEffect, useState } from 'react';
+import { Sun, Moon, Menu, X, ShoppingCart } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Logo from '../../assets/header-logo.png';
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
@@ -27,9 +25,9 @@ export default function Header() {
   ];
 
   return (
-    <header className={`fixed top-0 flex flex-row w-full z-1 justify-between items-center px-6 md:px-10 py-4 shadow-sm`}>
+    <header className="fixed top-0 flex flex-row w-full z-1 justify-between items-center px-6 md:px-10 py-4 shadow-sm">
       <a href="#" className="text-lg font-semibold">
-      <Image src={Logo} className="w-24" alt="header logo"/>
+        <Image src={Logo} className="w-24" alt="header logo" />
       </a>
       <nav className="hidden md:block">
         <ul className="flex space-x-6 text-sm font-medium">
@@ -42,7 +40,11 @@ export default function Header() {
           ))}
         </ul>
       </nav>
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
+        {/* Cart Icon */}
+        <a href="/cart" className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
+          <ShoppingCart size={20} className={theme === "light" ? "text-gray-800" : "text-white"} />
+        </a>
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 rounded-full bg-gray-200 dark:bg-gray-800"
