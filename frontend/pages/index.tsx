@@ -2,6 +2,7 @@ import Home from "./home";
 import Image from 'next/image'
 import Background from '../assets/background.jpg'
 import Header from "@/components/header";
+import Loader from "@/components/loader";
 
 
 export default function IndexPage() {
@@ -14,6 +15,7 @@ export default function IndexPage() {
     }}>
       <Header />
       <Home />
+      <Loader />
     </section>
   );
 }
