@@ -10,10 +10,13 @@ import { S3Module } from './s3/s3.module';
 import { OrdersService } from './order/order.service';
 import { OrdersController } from './order/order.controller';
 import { OrderModule } from './order/order.module';
+import { UserService } from './user/user.service';
+import { UserController } from './user/user.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [ProductModule, S3Module, OrderModule],
-  controllers: [AppController, ProductController, OrdersController],
-  providers: [AppService, PrismaService, ProductService, S3Service, OrdersService],
+  imports: [ProductModule, S3Module, OrderModule, UserModule],
+  controllers: [AppController, ProductController, OrdersController, UserController],
+  providers: [AppService, PrismaService, ProductService, S3Service, OrdersService, UserService],
 })
 export class AppModule {}
