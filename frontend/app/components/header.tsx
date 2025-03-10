@@ -25,7 +25,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 flex flex-row w-full z-1 justify-between items-center px-6 md:px-10 py-4 shadow-sm">
+    <header className="relative top-0 flex flex-row w-full z-1 justify-between items-center px-6 md:px-10 py-4 shadow-sm">
       <a href="#" className="text-lg font-semibold">
         <Image src={Logo} className="w-24" alt="header logo" />
       </a>
