@@ -41,7 +41,6 @@ export default function Header() {
         </ul>
       </nav>
       <div className="flex items-center gap-2">
-        {/* Cart Icon */}
         <a href="/cart" className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
           <ShoppingCart size={20} className={theme === "light" ? "text-gray-800" : "text-white"} />
         </a>
@@ -52,7 +51,7 @@ export default function Header() {
           {isMenuOpen ? (
             <X size={20} className={theme === "light" ? "text-gray-800" : "text-white"} />
           ) : (
-            <Menu size={20} className={theme === "light" ? "text-gray-800" : "text-gray-900"} />
+            <Menu size={20} className={theme === "light" ? "text-gray-800" : "text-white"} />
           )}
         </button>
       </div>
