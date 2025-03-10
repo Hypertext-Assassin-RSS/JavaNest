@@ -15,10 +15,10 @@ export default function About(){
         }}>
           <div className='flex flex-col items-center justify-evenly'>
             <h1 className="text-4xl font-bold">About Us</h1>
-            <span className="text-xl font-semibold text-gray-700 mt-2">
+            <span className="text-xl font-semibold text-stone-500 mt-2">
               Enjoy Your Day With Refreshing Coffee From
             </span>
-            <span className="text-xl font-semibold text-gray-700 mt-0">
+            <span className="text-xl font-semibold text-stone-500 mt-0">
             JavaNest
             </span>
           </div>
