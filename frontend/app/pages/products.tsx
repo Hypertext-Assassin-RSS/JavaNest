@@ -49,8 +49,8 @@ const CoffeeMenu = () => {
             <p className="mt-4 text-lg text-center w-3/5 mx-auto text-gray-200">
               Coffee drinks come in various styles, each offering a unique flavor and texture. Popular options include Espresso, a strong and concentrated shot; Americano, a diluted espresso for a milder taste.
             </p>
-            <a href="#" className="mt-6 text-lg font-semibold text-white hover:underline flex items-center justify-center gap-2">
-                All Drinks →
+            <a href="#" className="group mt-6 text-lg font-semibold text-white  flex items-center justify-center gap-2">
+                All Drinks<span className="transition-transform duration-200 group-hover:translate-x-[5px]">→</span>
             </a>
         </section>
         <div className="flex justify-center gap-6 p-6 bg-[#0A0A0A]">
