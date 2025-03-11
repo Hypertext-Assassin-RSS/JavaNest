@@ -5,7 +5,6 @@ import Background from '../../assets/cffee-background.png'
 
 export default function About(){
 
-
     return (
         <section className="flex flex-col items-center justify-evenly lg:flex-row min-h-screen" style={{ 
           backgroundImage: `url(${Background.src})`,
@@ -15,10 +14,10 @@ export default function About(){
         }}>
           <div className='flex flex-col items-center justify-evenly'>
             <h1 className="text-4xl font-bold">About Us</h1>
-            <span className="text-xl font-semibold text-stone-500 mt-2">
+            <span className="text-xl font-semibold text-orange-200 mt-2">
               Enjoy Your Day With Refreshing Coffee From
             </span>
-            <span className="text-xl font-semibold text-stone-500 mt-0">
+            <span className="text-xl font-semibold text-orange-200 mt-0">
             JavaNest
             </span>
           </div>
