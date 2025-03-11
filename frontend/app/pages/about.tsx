@@ -1,29 +1,33 @@
 import Image from 'next/image'
-import AboutLogo from '../../assets/coffee-cup.png'
 import Background from '../../assets/cffee-background.png'
+import CoffeeCup from '../../assets/coffee-cup.png'
 
-
-export default function About(){
-
+export default function About() {
     return (
-        <section className="flex flex-col items-center justify-evenly lg:flex-row min-h-screen" style={{ 
-          backgroundImage: `url(${Background.src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}>
-          <div className='flex flex-col items-center justify-evenly'>
-            <h1 className="text-4xl font-bold">About Us</h1>
-            <span className="text-xl font-semibold text-orange-200 mt-2">
-              Enjoy Your Day With Refreshing Coffee From
-            </span>
-            <span className="text-xl font-semibold text-orange-200 mt-0">
-            JavaNest
-            </span>
-          </div>
-          <div className='flex justify-center'>
-            <Image src={AboutLogo.src} alt='about logo'  width={500} height={800} />
-          </div>
+        <section className="relative flex items-center justify-center min-h-screen  bg-cover bg-center bg-no-repeat px-6 lg:px-20" 
+            style={{ backgroundImage: `url(${Background.src})` }}>
+            <div className="max-w-2xl text-white">
+                <h3 className="text-lg font-semibold uppercase tracking-wide text-gray-300">
+                    Welcome to JavaNest
+                </h3>
+                <h1 className="mt-2 text-5xl font-bold leading-tight sm:text-6xl">
+                    Enjoy Your Morning <br /> Coffee Shot
+                </h1>
+                <p className="mt-4 text-lg text-gray-300">
+                    Start your day with a fresh coffee made with 100% Arabica beans. Indulge in rich flavors and aromas that awaken your senses.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-4">
+                    <button className="rounded-lg cursor-pointer bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]">
+                        Book a Table
+                    </button>
+                    <button className="rounded-lg border cursor-pointer border-white px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-white hover:text-black">
+                        Visit Our Shop
+                    </button>
+                </div>
+            </div>
+            <div className="">
+                <Image src={CoffeeCup.src} alt="Coffee Cup" width={500} height={500} className="drop-shadow-lg" />
+            </div>
         </section>
     )
 }

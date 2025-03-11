@@ -6,7 +6,7 @@ export default function ProductCard( product:any ) {
 
 
     return(
-        <section className="flex  w-80 h-40 m-5 mx-auto p-6 bg-stone-500 rounded-lg shadow-md">
+        <section className="flex  w-80 h-40 m-5 mx-auto p-6 bg-orange-200 rounded-lg shadow-md">
             <div className='w-40' style={{ 
                 backgroundImage: `url(${espresso.src})`,
                 backgroundSize: 'cover',
