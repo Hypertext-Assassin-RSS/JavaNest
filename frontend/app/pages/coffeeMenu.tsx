@@ -2,6 +2,7 @@ import React from "react";
 import Cappuccino from "../../assets/cappuccino.png"
 import CafeLatte from "../../assets/cafe-latte.png"
 import BlackCoffee from "../../assets/black-coffee.png"
+import CoffeeCard from "../components/coffeeCard";
 
 const coffeeItems = [
   {
@@ -24,21 +25,6 @@ const coffeeItems = [
   },
 ];
 
-const CoffeeCard = ({ name, price, image, bgColor }: any) => {
-  return (
-    <div className={`rounded-2xl p-6 text-center shadow-lg ${bgColor} text-white`}>
-      <img src={image} alt={name} className="mx-auto mb-4 h-40 object-contain" />
-      <h2 className="text-xl font-bold">{price}</h2>
-      <h3 className="text-2xl font-semibold">{name}</h3>
-      <p className="text-sm opacity-80 mt-2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.
-      </p>
-      <button className="mt-4 w-full rounded-lg bg-white py-2 text-black font-semibold hover:bg-gray-200">
-        Get Delivery
-      </button>
-    </div>
-  );
-};
 
 const CoffeeMenu = () => {
   return (
@@ -53,7 +39,7 @@ const CoffeeMenu = () => {
                 All Drinks<span className="transition-transform duration-200 group-hover:translate-x-[5px]">→</span>
             </a>
         </section>
-        <div className="flex justify-center gap-6 p-6 bg-[#0A0A0A]">
+        <div className="flex flex-col justify-center gap-6 p-6 bg-[#0A0A0A] lg:flex-row">
         {coffeeItems.map((item, index) => (
             <CoffeeCard key={index} {...item} />
         ))}
