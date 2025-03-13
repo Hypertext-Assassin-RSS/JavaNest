@@ -16,7 +16,7 @@ export  function CoffeeCard({ name, price, image, bgColor }: CoffeeCardProps) {
         <h3 className="text-2xl font-semibold">{name}</h3>
         <p className="text-sm opacity-80 mt-2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.
-        </p>
+        </p> 
         <button className="cursor-pointer mt-4 w-full rounded-lg bg-white py-2 text-black font-semibold hover:bg-gray-200">
           Get Delivery
         </button>

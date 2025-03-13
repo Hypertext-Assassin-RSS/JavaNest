@@ -49,5 +49,5 @@ out/
 /backend/dist/
 /backend/.cache/
 
-
+.qodo
 .qodo/history.sqlite

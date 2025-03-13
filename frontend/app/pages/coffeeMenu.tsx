@@ -1,8 +1,8 @@
 import React from "react";
-import Cappuccino from "../../assets/cappuccino.png"
-import CafeLatte from "../../assets/cafe-latte.png"
-import BlackCoffee from "../../assets/black-coffee.png"
-import { CoffeeCard } from "../components/coffeeCard";
+import Cappuccino from "@/app/assets/cappuccino.png"
+import CafeLatte from "@/app/assets/cafe-latte.png"
+import BlackCoffee from "@/app/assets/black-coffee.png"
+import { CoffeeCard } from "@/app/components/coffeeCard";
 
 const coffeeItems = [
   {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
-import Logo from '../../assets/header-logo.png';
+import Logo from '@/app/assets/header-logo.png';
 
 export  function Header() {
   const [mounted, setMounted] = useState(false);
