@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 

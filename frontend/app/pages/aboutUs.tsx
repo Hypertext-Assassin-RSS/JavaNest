@@ -1,5 +1,6 @@
 import React from "react";
 import CoffeeSplash from "@/assets/coffee-splash.png" 
+import Image from "next/image";
 
 const AboutUs = () => {
   return (
@@ -24,7 +25,9 @@ const AboutUs = () => {
           </button>
         </div>
         <div className="md:w-1/3 flex justify-center my-6">
-          <img
+          <Image
+            width={500}
+            height={500}
             src={CoffeeSplash.src}
             alt="Coffee Splash"
             className="max-w-full h-auto"
