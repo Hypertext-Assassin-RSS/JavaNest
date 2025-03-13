@@ -2,7 +2,7 @@ import React from "react";
 import CoffeeSplash from "@/assets/coffee-splash.png" 
 import Image from "next/image";
 
-const AboutUs = () => {
+export function AboutUs  () {
   return (
     <section className="bg-cream min-h-screen flex flex-col items-center justify-center px-6 mt-10 lg:mt-0">
       <div className="text-center mb-6">
@@ -25,13 +25,7 @@ const AboutUs = () => {
           </button>
         </div>
         <div className="md:w-1/3 flex justify-center my-6">
-          <Image
-            width={500}
-            height={500}
-            src={CoffeeSplash.src}
-            alt="Coffee Splash"
-            className="max-w-full h-auto"
-          />
+        <Image width={500} height={500} src={CoffeeSplash} alt="Coffee Splash" />
         </div>
         <div className="md:w-1/2 text-left px-6">
           <h3 className="text-2xl font-bold text-darkbrown">Our Vision</h3>
@@ -53,4 +47,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+

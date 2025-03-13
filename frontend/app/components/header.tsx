@@ -5,7 +5,7 @@ import { Menu, X, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '../../assets/header-logo.png';
 
-export default function Header() {
+export  function Header() {
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

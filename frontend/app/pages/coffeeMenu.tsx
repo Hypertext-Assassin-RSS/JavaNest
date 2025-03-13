@@ -2,7 +2,7 @@ import React from "react";
 import Cappuccino from "../../assets/cappuccino.png"
 import CafeLatte from "../../assets/cafe-latte.png"
 import BlackCoffee from "../../assets/black-coffee.png"
-import CoffeeCard from "../components/coffeeCard";
+import { CoffeeCard } from "../components/coffeeCard";
 
 const coffeeItems = [
   {
@@ -26,7 +26,7 @@ const coffeeItems = [
 ];
 
 
-const CoffeeMenu = () => {
+export function CoffeeMenu () {
   return (
     <section>
         <section className="flex flex-col text-white text-center justify-center py-12 px-6 rounded-lg">
@@ -48,4 +48,4 @@ const CoffeeMenu = () => {
   );
 };
 
-export default CoffeeMenu;
+;

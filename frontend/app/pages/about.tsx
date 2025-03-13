@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Background from '../../assets/cffee-background.png'
 import CoffeeCup from '../../assets/coffee-cup.png'
 
-export default function About() {
+export  function About() {
     return (
         <section
             className="relative flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat px-6 lg:px-20"
@@ -35,7 +35,7 @@ export default function About() {
                     </div>
                 </div>
                 <div>
-                    <Image src={CoffeeCup.src} alt="Coffee Cup" width={500} height={500} className="drop-shadow-lg" />
+                    <Image src={CoffeeCup} alt="Coffee Cup" width={500} height={500} className="drop-shadow-lg" />
                 </div>
             </motion.div>
         </section>

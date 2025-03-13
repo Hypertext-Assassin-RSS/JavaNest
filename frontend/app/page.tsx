@@ -1,9 +1,9 @@
 "use client";
 
-import Header from "./components/header";
-import About from "./pages/about";
-import Products from "./pages/coffeeMenu";
-import AboutUs from "./pages/aboutUs";
+import { Header } from "./components/header";
+import { About } from "./pages/about";
+import { CoffeeMenu } from "./pages/coffeeMenu";
+import { AboutUs } from "./pages/aboutUs";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <About />
       <AboutUs />
-      <Products />
+      <CoffeeMenu />
     </>
   );
 }

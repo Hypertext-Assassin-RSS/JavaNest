@@ -8,7 +8,7 @@ interface CoffeeCardProps {
   bgColor: string;
 }
 
-export default function CoffeeCard({ name, price, image, bgColor }: CoffeeCardProps) {
+export  function CoffeeCard({ name, price, image, bgColor }: CoffeeCardProps) {
     return (
       <div className={`rounded-2xl p-6 text-center shadow-lg ${bgColor} text-white`}>
         <Image src={image} alt={name} width={500} height={500} className="mx-auto mb-4 h-40 object-contain" />
