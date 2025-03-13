@@ -39,14 +39,14 @@ export class ProductController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: number) {
     return this.productService.findOne(id);
   }
 
   @Patch(':id')
   @UseInterceptors(FileInterceptor('file'))
   async update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateProductData: any,
     @UploadedFile(
       new ParseFilePipe({
@@ -60,7 +60,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id') id: number) {
     return this.productService.remove(id);
   }
 }

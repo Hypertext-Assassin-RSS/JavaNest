@@ -15,7 +15,7 @@ datasource db {
 
 
 model Product {
-  id             String   @id @default(dbgenerated("CONCAT('PRD', LPAD(nextval('product_id_seq')::text, 4, '0'))")) @map("id")
+  id             Int   @id @default(autoincrement())
   name           String
   price          String?
   imageUrl       String?

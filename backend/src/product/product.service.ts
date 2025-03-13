@@ -28,11 +28,11 @@ export class ProductService {
     return this.prisma.product.findMany();
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     return this.prisma.product.findUnique({ where: { id } });
   }
 
-  async update(id: string, data: any, file?: Express.Multer.File) {
+  async update(id: number, data: any, file?: Express.Multer.File) {
     let imageUrl = data.imageUrl;
     if (file) {
       imageUrl = await this.s3Service.uploadFile(file);
@@ -50,7 +50,7 @@ export class ProductService {
     });
   }
 
-  async remove(id: string) {
+  async remove(id: number) {
     return this.prisma.product.delete({ where: { id } });
   }
 }
