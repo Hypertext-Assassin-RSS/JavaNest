@@ -33,9 +33,11 @@ export default function TableBooking() {
   };
 
   return (
-    <div className="relative  flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat px-6 lg:px-20"
-      style={{ backgroundImage: `url(${Background.src})` }}>
-      <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
+    <div
+      className="relative flex flex-col lg:flex-row items-center justify-evenly min-h-screen bg-cover bg-center bg-no-repeat px-6 lg:px-20"
+      style={{ backgroundImage: `url(${Background.src})` }}
+    >
+      <div className="w-full lg:w-1/2 max-w-lg p-6 bg-white rounded-lg shadow-md mb-6 lg:mb-0">
         <h2 className="text-2xl font-semibold mb-4 text-black">BOOKING</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
@@ -115,18 +117,19 @@ export default function TableBooking() {
           </div>
           <button 
             type="submit" 
-            className="w-full rounded-lg cursor-pointer bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]">
+            className="w-full rounded-lg cursor-pointer bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]"
+          >
             Book a table
           </button>
         </form>
       </div>
-      <div className="hidden lg:block">
+      <div className=" w-full lg:w-1/2 flex justify-center">
         <Image 
           src={CoffeeCup} 
           alt="Coffee Cup" 
           width={500} 
           height={500} 
-          className="drop-shadow-lg" 
+          className="drop-shadow-lg hidden md:block" 
         />
       </div>
     </div>
