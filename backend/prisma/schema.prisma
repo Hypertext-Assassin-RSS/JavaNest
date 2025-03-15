@@ -18,6 +18,7 @@ model Product {
   id             Int   @id @default(autoincrement())
   name           String
   price          String?
+  bgColor          String?
   imageUrl       String?
   category       String
   discountActive Boolean  @default(false)
