@@ -16,19 +16,19 @@ export function CoffeeMenu() {
   const staticCoffeeItems: CoffeeItem[] = [
     {
       name: "Cappuccino",
-      price: "$4.20",
+      price: "4.20",
       imageUrl: Cappuccino.src,
       bgColor: "bg-[#9C6B44]",
     },
     {
       name: "Cafe Latte",
-      price: "$3.15",
+      price: "3.15",
       imageUrl: CafeLatte.src,
       bgColor: "bg-[#6F7D5F]",
     },
     {
       name: "Dark Coffee",
-      price: "$2.75",
+      price: "2.75",
       imageUrl: BlackCoffee.src,
       bgColor: "bg-[#2D241F]",
     },
