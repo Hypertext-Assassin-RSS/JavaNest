@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import { Menu, X, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '@/app/assets/header-logo.png';
 
-export  function Header() {
+export function Header() {
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -39,17 +40,26 @@ export  function Header() {
         </ul>
       </nav>
       <div className="flex items-center gap-2">
-        <a href="/cart" className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-          <ShoppingCart size={20} className={"text-white"} />
+      <a
+          href="/book-table"
+          className="hidden md:inline-block rounded-lg border cursor-pointer border-white px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-white hover:text-black"
+        >
+          Book Table
         </a>
+        {/* <a
+          href="/cart"
+          className="p-2 rounded-full bg-gray-200 dark:bg-gray-800"
+        >
+          <ShoppingCart size={20} className="text-white" />
+        </a> */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 rounded-full bg-gray-200 dark:bg-gray-800"
         >
           {isMenuOpen ? (
-            <X size={20} className={ "text-white"} />
+            <X size={20} className="text-white" />
           ) : (
-            <Menu size={20} className={ "text-white"} />
+            <Menu size={20} className="text-white" />
           )}
         </button>
       </div>
@@ -67,6 +77,15 @@ export  function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href="/book-table"
+                className="block w-full hover:text-gray-500"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Book Table
+              </a>
+            </li>
           </ul>
         </nav>
       )}

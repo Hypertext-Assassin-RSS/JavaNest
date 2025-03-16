@@ -15,9 +15,10 @@ datasource db {
 
 
 model Product {
-  id             String   @id @default(dbgenerated("CONCAT('PRD', LPAD(nextval('product_id_seq')::text, 4, '0'))")) @map("id")
+  id             Int   @id @default(autoincrement())
   name           String
   price          String?
+  bgColor          String?
   imageUrl       String?
   category       String
   discountActive Boolean  @default(false)
@@ -45,4 +46,24 @@ model Order {
   updatedAt   DateTime @updatedAt
 }
 
+model Table {
+  id         Int      @id @default(autoincrement())
+  number     Int      @unique
+  capacity   Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
+  bookings   Booking[]
+}
+
+model Booking {
+  id         Int   @id @default(autoincrement())
+  tableId    Int
+  table      Table    @relation(fields: [tableId], references: [id], onDelete: Cascade)
+  name       String
+  phone      String
+  email      String?  
+  date       DateTime
+  notes      String?  
+  createdAt  DateTime @default(now())
+}
