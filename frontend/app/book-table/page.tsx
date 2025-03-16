@@ -95,6 +95,26 @@ export default function TableBooking() {
               <option>20:00</option>
             </select>
           </div>
+          {formData.date && (
+            <select
+              name="tableId"
+              className="w-full p-2 border rounded text-black"
+              required
+              onChange={handleChange}
+              value={formData.tableId}
+            >
+              <option value="">Select a Table</option>
+              {availableTables.length > 0 ? (
+                availableTables.map((table) => (
+                  <option key={table.id} value={table.id}>
+                    Table {table.number} (Seats {table.capacity})
+                  </option>
+                ))
+              ) : (
+                <option disabled>No tables available</option>
+              )}
+            </select>
+          )}
           <input
             type="number"
             name="people"
@@ -149,27 +169,6 @@ export default function TableBooking() {
             onChange={handleChange}
             value={formData.comments}
           ></textarea>
-
-          {formData.date && (
-            <select
-              name="tableId"
-              className="w-full p-2 border rounded text-black"
-              required
-              onChange={handleChange}
-              value={formData.tableId}
-            >
-              <option value="">Select a Table</option>
-              {availableTables.length > 0 ? (
-                availableTables.map((table) => (
-                  <option key={table.id} value={table.id}>
-                    Table {table.number} (Seats {table.capacity})
-                  </option>
-                ))
-              ) : (
-                <option disabled>No tables available</option>
-              )}
-            </select>
-          )}
 
           <div className="flex items-center">
             <input type="checkbox" name="subscribe" className="mr-2" onChange={handleChange} checked={formData.subscribe} />
