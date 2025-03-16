@@ -20,7 +20,7 @@ export class BookingController {
       email: bookingData.email,
       date: new Date(bookingData.date),
       notes: bookingData.notes,
-      table: { connect: { id: bookingData.tableId } },
+      table: { connect: { id: parseInt(bookingData.tableId, 10) } },
     });
   }
 
