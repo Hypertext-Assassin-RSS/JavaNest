@@ -37,13 +37,13 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
         onClick={handleClose}
       ></div>
       <div
-        className="bg-black rounded-lg p-6 z-10 w-80"
+        className="bg-black rounded-lg p-6 z-10 w-96"
         style={{ backgroundImage: `url(${Background.src})` }}
       >
         <h2 className="text-xl font-bold mb-4 text-white">Delivery Details</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-white text-sm mb-1" htmlFor="name">
+          <div className="flex flex-row items-center">
+            <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="name">
               Name
             </label>
             <input
@@ -52,11 +52,11 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full p-2 rounded"
+              className="w-full p-2 rounded basis-2/3 border"
             />
-          </div>
-          <div>
-            <label className="block text-white text-sm mb-1" htmlFor="email">
+          </div >
+          <div className="flex flex-row items-center">
+            <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="email">
               Email
             </label>
             <input
@@ -65,11 +65,11 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full p-2 rounded"
+              className="w-full p-2 rounded basis-2/3 border"
             />
           </div>
-          <div>
-            <label className="block text-white text-sm mb-1" htmlFor="mobile">
+          <div className="flex flex-row items-center">
+            <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="mobile">
               Mobile No
             </label>
             <input
@@ -78,17 +78,17 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
               required
-              className="w-full p-2 rounded"
+              className="w-full p-2 rounded basis-2/3 border"
             />
           </div>
-          <div>
+          <div className="flex flex-row items-center">
             <label
-              className="block text-white text-sm mb-1"
+              className="block text-white text-sm mb-1 basis-1/3"
               htmlFor="location"
             >
               Location
             </label>
-            <div className="flex">
+            <div className="flex basis-2/3">
               <input
                 id="location"
                 type="text"
@@ -96,7 +96,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Select location from map"
                 required
-                className="w-full p-2 rounded"
+                className="w-full p-2 rounded border"
               />
               <button
                 type="button"
