@@ -1,22 +1,15 @@
 import { FC, useState } from "react";
-import GoogleMapPicker from "react-google-map-picker";
 import Background from '@/app/assets/modal-background.jpg';
 
 interface DeliveryModalProps {
   handleClose: () => void;
 }
 
-// Default coordinates (you can update with a more relevant default)
-const DefaultLocation = { lat: 40.73061, lng: -73.935242 };
-const DefaultZoom = 10;
-const GOOGLE_MAPS_API_KEY = "AIzaSyC3fyuWN3_7_OUbXxUrwg7eWBe73u7dmzA";
-
 const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [location, setLocation] = useState("");
-  const [isMapOpen, setIsMapOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,16 +19,15 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
     handleClose();
   };
 
-  const openMap = () => {
-    setIsMapOpen(true);
-  };
-
-  const closeMap = () => {
-    setIsMapOpen(false);
-  };
-
-  const handleChangeLocation = (lat: number, lng: number) => {
-    setLocation(`${lat}, ${lng}`);
+  const selectLocation = () => {
+    // For demonstration, a prompt is used.
+    // Replace this with actual map integration to select a location.
+    const selectedLocation = prompt(
+      "Enter your location coordinates (e.g., lat, long) or address:"
+    );
+    if (selectedLocation) {
+      setLocation(selectedLocation);
+    }
   };
 
   return (
@@ -62,7 +54,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               required
               className="w-full p-2 rounded basis-2/3 border"
             />
-          </div>
+          </div >
           <div className="flex flex-row items-center">
             <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="email">
               Email
@@ -90,7 +82,10 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
             />
           </div>
           <div className="flex flex-row items-center">
-            <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="location">
+            <label
+              className="block text-white text-sm mb-1 basis-1/3"
+              htmlFor="location"
+            >
               Location
             </label>
             <div className="flex basis-2/3">
@@ -105,7 +100,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               />
               <button
                 type="button"
-                onClick={openMap}
+                onClick={selectLocation}
                 className="ml-2 p-2 bg-white text-black rounded hover:bg-gray-200"
               >
                 Map
@@ -126,30 +121,6 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
           Cancel
         </button>
       </div>
-
-      {isMapOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-60">
-          <div
-            className="absolute inset-0 bg-black opacity-50"
-            onClick={closeMap}
-          ></div>
-          <div className="bg-white rounded-lg p-4 z-70 w-11/12 md:w-3/4 lg:w-1/2">
-            <h3 className="text-lg font-bold mb-2">Select Delivery Location</h3>
-            <GoogleMapPicker
-              defaultLocation={DefaultLocation}
-              zoom={DefaultZoom}
-              onChangeLocation={handleChangeLocation}
-              apiKey={GOOGLE_MAPS_API_KEY}
-            />
-            <button
-              onClick={closeMap}
-              className="mt-4 w-full rounded-lg bg-blue-500 py-2 text-white font-semibold hover:bg-blue-600"
-            >
-              Done
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
