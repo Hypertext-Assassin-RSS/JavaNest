@@ -13,15 +13,11 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Process the submitted delivery details (e.g., send to an API)
     console.log("Delivery Details:", { name, email, mobile, location });
-    // Close the modal after submission
     handleClose();
   };
 
   const selectLocation = () => {
-    // For demonstration, a prompt is used.
-    // Replace this with actual map integration to select a location.
     const selectedLocation = prompt(
       "Enter your location coordinates (e.g., lat, long) or address:"
     );
