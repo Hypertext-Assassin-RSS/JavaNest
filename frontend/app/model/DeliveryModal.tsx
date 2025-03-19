@@ -20,7 +20,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
   });
 
-
+  // Fetch user's current location to center the map on page load
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -51,7 +51,12 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
       setSelectedCoords({ lat, lng });
-      setLocation(`${lat}, ${lng}`);
+    }
+  };
+
+  const confirmLocation = () => {
+    if (selectedCoords) {
+      setLocation(`${selectedCoords.lat}, ${selectedCoords.lng}`);
       setIsMapOpen(false);
     }
   };
@@ -122,12 +127,12 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Select location from map"
                 required
-                className="w-full p-2 rounded border"
+                className="w-full p-2 rounded border hidden"
               />
               <button
                 type="button"
                 onClick={() => setIsMapOpen(true)}
-                className="ml-2 p-2 bg-white text-black rounded hover:bg-gray-200"
+                className="ml-2 cursor-pointer mt-4 w-full rounded-lg border border-white px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-white hover:text-black"
               >
                 Map
               </button>
@@ -150,15 +155,26 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
       {isMapOpen && isLoaded && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute inset-0 bg-black opacity-50" onClick={() => setIsMapOpen(false)}></div>
-          <div className="bg-white rounded-lg p-6 z-10 w-96 h-96">
-            <GoogleMap
-              mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={center}
-              zoom={10}
-              onClick={handleMapClick}
-            >
-              {selectedCoords && <Marker position={selectedCoords} />}
-            </GoogleMap>
+          <div className="bg-white rounded-lg p-6 z-10 w-96 h-96 flex flex-col">
+            <div className="flex-grow">
+              <GoogleMap
+                mapContainerStyle={{ width: '100%', height: '100%' }}
+                center={center}
+                zoom={10}
+                onClick={handleMapClick}
+              >
+                {selectedCoords && <Marker position={selectedCoords} />}
+              </GoogleMap>
+            </div>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={confirmLocation}
+                disabled={!selectedCoords}
+                className={`px-4 py-2 rounded ${selectedCoords ? 'bg-[#8B5A2B] hover:bg-[#a57242] text-white' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
+              >
+                Confirm Location
+              </button>
+            </div>
           </div>
         </div>
       )}
