@@ -1,13 +1,19 @@
-
 import { FC, useState, useEffect } from "react";
 import Background from '@/app/assets/modal-background.jpg';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
-interface DeliveryModalProps {
-  handleClose: () => void;
+interface Product {
+  name: string;
+  price: string;
+  quantity: number;
 }
 
-const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
+interface DeliveryModalProps {
+  handleClose: () => void;
+  product: Product;
+}
+
+const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
@@ -42,7 +48,8 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Delivery Details:", { name, email, mobile, location });
+    // Include product details along with delivery details when processing the order.
+    console.log("Delivery Details:", { customer: { name, email, mobile, location }, product });
     handleClose();
   };
 
@@ -72,6 +79,12 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
         style={{ backgroundImage: `url(${Background.src})` }}
       >
         <h2 className="text-xl font-bold mb-4 text-white">Delivery Details</h2>
+        {/* Display the selected product details */}
+        <div className="mb-4 p-2 bg-gray-800 rounded">
+          <p className="text-white">Product: <span className="font-semibold">{product.name}</span></p>
+          <p className="text-white">Price: Rs {product.price}</p>
+          <p className="text-white">Quantity: {product.quantity}</p>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-row items-center">
             <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="name">
