@@ -82,7 +82,6 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
         style={{ backgroundImage: `url(${Background.src})` }}
       >
         <h2 className="text-xl font-bold mb-4 text-white">Delivery Details</h2>
-        {/* Display the selected product details */}
         <div className="mb-4 p-2 bg-gray-800 rounded">
           <p className="text-white">Product: <span className="font-semibold">{product.name}</span></p>
           <p className="text-white">Price: Rs {finalPrice}</p>
