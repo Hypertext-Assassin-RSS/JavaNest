@@ -26,7 +26,6 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
   });
 
-  // Fetch user's current location to center the map on page load
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -48,7 +47,6 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Include product details along with delivery details when processing the order.
     console.log("Delivery Details:", { customer: { name, email, mobile, location }, product });
     handleClose();
   };
@@ -68,7 +66,6 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
     }
   };
 
-  // Calculate the final price as price * quantity
   const finalPrice = Number(product.price) * product.quantity;
 
   return (
