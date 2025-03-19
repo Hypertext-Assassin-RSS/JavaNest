@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+
+import { FC, useState, useEffect } from "react";
 import Background from '@/app/assets/modal-background.jpg';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
@@ -13,10 +14,31 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
   const [location, setLocation] = useState("");
   const [selectedCoords, setSelectedCoords] = useState<{ lat: number, lng: number } | null>(null);
   const [isMapOpen, setIsMapOpen] = useState(false);
+  const [center, setCenter] = useState<{ lat: number, lng: number }>({ lat: -3.745, lng: -38.523 });
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
   });
+
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentCenter = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          setCenter(currentCenter);
+        },
+        (error) => {
+          console.error("Error getting location", error);
+        }
+      );
+    } else {
+      console.warn("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +80,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               required
               className="w-full p-2 rounded basis-2/3 border"
             />
-          </div >
+          </div>
           <div className="flex flex-row items-center">
             <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="email">
               Email
@@ -131,7 +153,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
           <div className="bg-white rounded-lg p-6 z-10 w-96 h-96">
             <GoogleMap
               mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={{ lat: -3.745, lng: -38.523 }}
+              center={center}
               zoom={10}
               onClick={handleMapClick}
             >
