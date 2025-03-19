@@ -152,8 +152,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
           </div>
           <button
             type="submit"
-            className="cursor-pointer mt-4 w-full rounded-lg bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]"
-          >
+            className="cursor-pointer mt-4 w-full rounded-lg bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]">
             Submit
           </button>
         </form>
