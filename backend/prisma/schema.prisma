@@ -76,6 +76,16 @@ model Delivery {
   address        String
   status         String   @default("pending")
   trackingNumber String?
+  customerId  Int
+  customer    Customer @relation(fields: [customerId], references: [id])
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model Customer {
+  id      Int       @id @default(autoincrement())
+  name    String
+  email   String    @unique
+  mobile  String
+  deliveries Delivery[]
 }

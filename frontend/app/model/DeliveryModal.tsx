@@ -17,7 +17,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
   const [selectedCoords, setSelectedCoords] = useState<{ lat: number, lng: number } | null>(null);
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [center, setCenter] = useState<{ lat: number, lng: number }>({ lat: -3.745, lng: -38.523 });
@@ -45,10 +45,34 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Delivery Details:", { customer: { name, email, mobile, location }, product });
-    handleClose();
+    const deliveryData = {
+      customer: { name, email, mobile },
+      product,
+      totalPrice: Number(product.price) * product.quantity,
+      address,
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/delivery', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(deliveryData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Delivery created successfully:", data);
+      handleClose();
+    } catch (error) {
+      console.error("Error creating delivery:", error);
+    }
   };
 
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -61,7 +85,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
 
   const confirmLocation = () => {
     if (selectedCoords) {
-      setLocation(`${selectedCoords.lat}, ${selectedCoords.lng}`);
+      setAddress(`${selectedCoords.lat}, ${selectedCoords.lng}`);
       setIsMapOpen(false);
     }
   };
@@ -135,8 +159,8 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
               <input
                 id="location"
                 type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 placeholder="Select location from map"
                 required
                 className="w-full p-2 rounded border hidden"
