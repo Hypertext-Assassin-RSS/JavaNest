@@ -68,6 +68,9 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
     }
   };
 
+  // Calculate the final price as price * quantity
+  const finalPrice = Number(product.price) * product.quantity;
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
@@ -82,7 +85,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
         {/* Display the selected product details */}
         <div className="mb-4 p-2 bg-gray-800 rounded">
           <p className="text-white">Product: <span className="font-semibold">{product.name}</span></p>
-          <p className="text-white">Price: Rs {product.price}</p>
+          <p className="text-white">Price: Rs {finalPrice}</p>
           <p className="text-white">Quantity: {product.quantity}</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
