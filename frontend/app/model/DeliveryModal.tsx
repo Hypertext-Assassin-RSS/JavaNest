@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import Background from '@/app/assets/modal-background.jpg';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 interface DeliveryModalProps {
   handleClose: () => void;
@@ -10,6 +11,12 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [location, setLocation] = useState("");
+  const [selectedCoords, setSelectedCoords] = useState<{ lat: number, lng: number } | null>(null);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,12 +24,13 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
     handleClose();
   };
 
-  const selectLocation = () => {
-    const selectedLocation = prompt(
-      "Enter your location coordinates (e.g., lat, long) or address:"
-    );
-    if (selectedLocation) {
-      setLocation(selectedLocation);
+  const handleMapClick = (e: google.maps.MapMouseEvent) => {
+    if (e.latLng) {
+      const lat = e.latLng.lat();
+      const lng = e.latLng.lng();
+      setSelectedCoords({ lat, lng });
+      setLocation(`${lat}, ${lng}`);
+      setIsMapOpen(false);
     }
   };
 
@@ -96,7 +104,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
               />
               <button
                 type="button"
-                onClick={selectLocation}
+                onClick={() => setIsMapOpen(true)}
                 className="ml-2 p-2 bg-white text-black rounded hover:bg-gray-200"
               >
                 Map
@@ -117,6 +125,21 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose }) => {
           Cancel
         </button>
       </div>
+      {isMapOpen && isLoaded && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black opacity-50" onClick={() => setIsMapOpen(false)}></div>
+          <div className="bg-white rounded-lg p-6 z-10 w-96 h-96">
+            <GoogleMap
+              mapContainerStyle={{ width: '100%', height: '100%' }}
+              center={{ lat: -3.745, lng: -38.523 }}
+              zoom={10}
+              onClick={handleMapClick}
+            >
+              {selectedCoords && <Marker position={selectedCoords} />}
+            </GoogleMap>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
