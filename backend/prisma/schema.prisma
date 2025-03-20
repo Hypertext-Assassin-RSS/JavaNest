@@ -14,18 +14,6 @@ datasource db {
 }
 
 
-model Product {
-  id             Int   @id @default(autoincrement())
-  name           String
-  price          String?
-  bgColor          String?
-  imageUrl       String?
-  category       String
-  discountActive Boolean  @default(false)
-  discountValue  String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-}
 
 
 model User {
@@ -57,6 +45,20 @@ model Booking {
   notes      String?  
   createdAt  DateTime @default(now())
 }
+
+model Product {
+  id             Int   @id @default(autoincrement())
+  name           String
+  price          String?
+  bgColor          String?
+  imageUrl       String?
+  category       String
+  discountActive Boolean  @default(false)
+  discountValue  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
 
 model Order {
   id          Int      @id @default(autoincrement())

@@ -5,24 +5,43 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class DeliveryService {
     constructor(private prisma:PrismaService){}
     async  create(deliveryData: any) {
-        return this.prisma.delivery.create({
-          data: {
-            address: deliveryData.address,
-            status: "pending",
-            customer: {
-              connectOrCreate: {
-                where: {
-                  email: deliveryData.customer.email,
-                },
-                create: {
-                  name: deliveryData.customer.name,
-                  email: deliveryData.customer.email,
-                  mobile: deliveryData.customer.mobile,
-                },
-              },
-            },
-          },
+        const customer = await this.prisma.customer.findUnique({
+          where: { email: deliveryData.customer.email },
         });
+
+        if (!customer) {
+            return this.prisma.delivery.create({
+                data: {
+                    address: deliveryData.address,
+                    status: "pending",
+                    customer: {
+                      connectOrCreate: {
+                        where: {
+                          email: deliveryData.customer.email,
+                        },
+                        create: {
+                          name: deliveryData.customer.name,
+                          email: deliveryData.customer.email,
+                          mobile: deliveryData.customer.mobile,
+                        },
+                      },
+                    },
+                  },
+            })
+        } else {
+            return this.prisma.delivery.create({
+                data: {
+                    address: deliveryData.address,
+                    status: "pending",
+                    customer: {
+                        connect: {
+                            id: customer.id,
+                        },
+                    },
+                },
+            });
+        }
+         
       }
       
 

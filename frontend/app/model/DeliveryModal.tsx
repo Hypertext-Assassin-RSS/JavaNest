@@ -67,7 +67,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
         throw new Error(`API request failed with status ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = await response;
       console.log("Delivery created successfully:", data);
       handleClose();
     } catch (error) {
