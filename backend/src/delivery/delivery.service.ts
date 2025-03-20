@@ -10,21 +10,35 @@ export class DeliveryService {
         });
 
         if (!customer) {
+            const  createdCustomer = await this.prisma.customer.create({
+                data: {
+                    name: deliveryData.customer.name,
+                    email: deliveryData.customer.email,
+                    mobile: deliveryData.customer.mobile,
+                }})
+
+
+                console.log('created customer',createdCustomer);
+
+                // const createdOrder = await this.prisma.order.create({
+                //     data: {
+                //       userId:createdCustomer.id,
+                //       items:deliveryData.product,
+                //       totalAmount:deliveryData.totalPrice,
+                //       status: 'pending',
+                //     },
+                //   });
+
+                //   console.log('created order',createdOrder);
+
             return this.prisma.delivery.create({
                 data: {
                     address: deliveryData.address,
                     status: "pending",
                     customer: {
-                      connectOrCreate: {
-                        where: {
-                          email: deliveryData.customer.email,
+                        connect: {
+                            id: createdCustomer.id,
                         },
-                        create: {
-                          name: deliveryData.customer.name,
-                          email: deliveryData.customer.email,
-                          mobile: deliveryData.customer.mobile,
-                        },
-                      },
                     },
                   },
             })
