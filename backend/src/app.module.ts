@@ -21,10 +21,12 @@ import { TableController } from './table/table.controller';
 import { TableService } from './table/table.service';
 import { TableModule } from './table/table.module';
 import { DeliveryModule } from './delivery/delivery.module';
+import { DeliveryController } from './delivery/delivery.controller';
+import { DeliveryService } from './delivery/delivery.service';
 
 @Module({
   imports: [ProductModule, S3Module, OrderModule, UserModule, AuthModule, BookingModule, TableModule, DeliveryModule],
-  controllers: [AppController, ProductController, OrdersController, UserController, BookingController, TableController],
-  providers: [AppService, PrismaService, ProductService, S3Service, OrdersService, UserService, BookingService, TableService],
+  controllers: [AppController, ProductController, OrdersController, UserController, BookingController, TableController,DeliveryController],
+  providers: [AppService, PrismaService, ProductService, S3Service, OrdersService, UserService, BookingService, TableService,DeliveryService],
 })
 export class AppModule {}
