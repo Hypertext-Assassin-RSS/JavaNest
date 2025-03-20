@@ -4,9 +4,27 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class DeliveryService {
     constructor(private prisma:PrismaService){}
-    async create(deliveryData: any) {
-        return this.prisma.delivery.create({ data: deliveryData });
-    }
+    async  create(deliveryData: any) {
+        return this.prisma.delivery.create({
+          data: {
+            address: deliveryData.address,
+            status: "pending",
+            customer: {
+              connectOrCreate: {
+                where: {
+                  email: deliveryData.customer.email,
+                },
+                create: {
+                  name: deliveryData.customer.name,
+                  email: deliveryData.customer.email,
+                  mobile: deliveryData.customer.mobile,
+                },
+              },
+            },
+          },
+        });
+      }
+      
 
     async findAll() {
         return this.prisma.delivery.findMany();
