@@ -35,6 +35,7 @@ out/
 .idea/
 *.swp
 *.swo
+.qodo
 
 # Dependencies
 /frontend/node_modules/
@@ -47,3 +48,6 @@ out/
 # NestJS specific
 /backend/dist/
 /backend/.cache/
+
+.qodo
+.qodo/history.sqlite

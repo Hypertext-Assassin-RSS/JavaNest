@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm --workspace frontend run dev\" \"npm --workspace backend run start:dev\"",
+    "build:frontend":"concurrently \"npm --workspace frontend run build\"",
     "backend": "concurrently \"npm --workspace backend run start:dev\"",
     "frontend": "concurrently \"npm --workspace frontend run dev\""
   },
@@ -19,5 +20,11 @@
   ],
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.13.1",
+    "framer-motion": "^12.4.10",
+    "lucide-react": "^0.479.0",
+    "next-themes": "^0.4.4"
   }
 }
