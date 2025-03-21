@@ -1,6 +1,9 @@
+
 import { FC, useState, useEffect } from "react";
 import Background from '@/app/assets/modal-background.jpg';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
   name: string;
@@ -67,11 +70,11 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
         throw new Error(`API request failed with status ${response.status}`);
       }
 
-      const data = await response;
-      console.log("Delivery created successfully:", data);
+      toast.success("Delivery created successfully!");
       handleClose();
     } catch (error) {
       console.error("Error creating delivery:", error);
+      toast.error("Error creating delivery. Please try again.");
     }
   };
 
@@ -149,10 +152,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
             />
           </div>
           <div className="flex flex-row items-center">
-            <label
-              className="block text-white text-sm mb-1 basis-1/3"
-              htmlFor="location"
-            >
+            <label className="block text-white text-sm mb-1 basis-1/3" htmlFor="location">
               Location
             </label>
             <div className="flex basis-2/3">
@@ -176,7 +176,8 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
           </div>
           <button
             type="submit"
-            className="cursor-pointer mt-4 w-full rounded-lg bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]">
+            className="cursor-pointer mt-4 w-full rounded-lg bg-[#8B5A2B] px-6 py-3 text-lg font-semibold text-white shadow-md transition duration-300 hover:bg-[#a57242]"
+          >
             Submit
           </button>
         </form>
@@ -213,6 +214,7 @@ const DeliveryModal: FC<DeliveryModalProps> = ({ handleClose, product }) => {
           </div>
         </div>
       )}
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 };
