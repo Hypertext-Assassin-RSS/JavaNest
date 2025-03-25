@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Patch, Delete, Body, Query, Param } from '@nestjs/common';
 import { BookingService } from './booking.service';
+import { ApiExcludeController } from '@nestjs/swagger';
 
+@ApiExcludeController()
 @Controller('bookings')
 export class BookingController {
   constructor(private readonly bookingService: BookingService) {}
